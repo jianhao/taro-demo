@@ -3,7 +3,7 @@ import Taro from '@tarojs/taro'
 import { View, Image, Button, Canvas } from '@tarojs/components'
 import classnames from 'classnames'
 import cloneDeep from 'lodash/clonedeep'
-import TaroCanvas from '@mhc/taro-canvas'
+import { TaroCanvas } from '@mhc/taro-canvas'
 import selectedImg from '@/assets/selected.png'
 import { saveImgAlbum, queryAuth } from '@/utils/nativeApi'
 import styles from './index.module.less'
@@ -342,7 +342,6 @@ function Index () {
     const { tempFilePath, errMsg } = result
     let msg = '绘制失败'
     setCanvasStatus(false)
-    setConfig({})
     msg = '海报绘制出现错误'
     if (errMsg === 'canvasToTempFilePath:ok') {
       setTempImgs([...tempImgs, tempFilePath])
@@ -382,7 +381,6 @@ function Index () {
       {
         canvasStatus && (
           <TaroCanvas
-            // debug
             config={config} // 绘制配置
             onCreateSuccess={onCreateSuccess} // 绘制成功回调
             onCreateFail={onCreateFail} // 绘制失败回调
